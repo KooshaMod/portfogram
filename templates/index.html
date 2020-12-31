@@ -1,0 +1,225 @@
+
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <script src="https://kit.fontawesome.com/6fac18e54c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static './css/headfoot.css' %}"/>
+    <link rel="stylesheet" href="{% static './css/stock.css' %}"/>
+    
+    
+
+    <title>it will be awsome!</title>
+  </head>
+  <body>
+      <!-- here start the nav section -->
+        {% include "navbar.html" %}
+        
+        <header>
+            <div>
+                <h1>{{stock.full_name}}</h1>
+            </div>
+            <div>
+                <select id="select">
+                    <option value="finance"><span>اطلاعات معاملاتی</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                    <option value="intro"><span>معرفی شرکت و صنعت</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                    <option value="Profitability"><span>سودآوری</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                    <option value="ratio"><span>نسبت‌های مالی</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                    <option value="expand"><span>طرح‌های توسعه‌</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                    <option value="raise"><span>افزایش سرمایه</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                    <option value="conferance"><span>کنفرانس</span><i class="fa fa-sort" aria-hidden="true"></i></option>
+                </select>
+            </div>
+        </header>
+        <section id="finance">
+            <div>
+                <div>
+                    <table class="tab">
+                        <thead>
+                            <tr>
+                                <th>خرید</th>
+                                <th>معامله</th>
+                                <th>فروش</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>40</td>
+                                <td>{{stock.close_price}} <span class="{% if stock.close_price_change_percent > 0 %} green {% else %} red {% endif %}">({{stock.close_price_change_percent|abs}})</span></td>
+                                <td>50</td>
+                            </tr>
+                            <tr>
+                                <td>اولین</td>
+                                <td>پایانی</td>
+                                <td>دیروز</td>
+                            </tr>
+                            <tr>
+                                <td>{{stock.first_price}}</td>
+                                <td>{{stock.final_price}} <span class="{% if stock.final_price_change_percent > 0 %} green {% else %} red {% endif %}">({{stock.final_price_change_percent|abs}})</span></td>
+                                <td>{{stock.yesterday_price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div>
+                    <table id="mid" class="tab">
+                        <tbody>
+                            <!-- <tr>
+                                <td class="right">تعداد معاملات</td>
+                                <td class="left">9,547</td>
+                            </tr> -->
+                            <tr>
+                                <td class="right">حجم معاملات</td>
+                                <td class="left">{{stock.trade_volume|div:1000000|floatformat:3}} M</td>
+                            </tr>
+                            <tr>
+                                <td class="right">ارزش معاملات</td>
+                                <td class="left">{{stock.trade_value|div:1000000000|floatformat:3}} B</td>
+                            </tr>
+                            <tr>
+                                <td class="right">ارزش بازار</td>
+                                <td class="left">{{stock.market_value|div:1000000000000|floatformat:3}} B</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+            </div>
+            <!-- <div>
+                <table class="tab">
+                    <thead>
+                        <tr>
+                            <th>حجم</th>
+                            <th>خرید</th>
+                            <th>فروش</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>حقیقی</td>
+                            <td>135.639 M<span>(77%)</span></td>
+                            <td>47.811 M<span>(27.1%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>حقوقی</td>
+                            <td>40.499 M<span>(22.9%)</span></td>
+                            <td>128.327 M<span>(72.8%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>تعداد</td>
+                            <td>خرید</td>
+                            <td>فروش</td>
+                        </tr>
+                        <tr>
+                            <td>مجموع</td>
+                            <td>2,450</td>
+                            <td>4,603</td>
+                        </tr>
+                        <tr>
+                            <td>حقیقی</td>
+                            <td>2,418</td>
+                            <td>4,563</td>
+                        </tr>
+                        <tr>
+                            <td>حقوقی</td>
+                            <td>32</td>
+                            <td>40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+            
+            <div class="mychart"><div id="chartContainer" ></div></div>
+        </section>
+        <section id="intro">
+            <div>
+                <h2>:معرفی شرکت</h2>
+                <p> فولاد سهم خیلی خوبیه، بخرید عشق کنید، تا حالا 400%  سود داده بازم میده</p>
+                <p>شرکت فولاد، ورق فولاد تولید میکنه (خدایی سخت بود فهمیدنش) و فولادهاشو میفروشه پول درمیاره به ما سود میده میزاریم چاک جیب میگیم آخ جون</p>
+            </div>
+            <div>
+                <button><a href="#">دانلود آخرین گزارش هیئت مدیره</a></button>
+            </div>
+            
+        </section>
+        <section id="Profitability">
+            <div>
+                <table class="tab">
+                    <tr>
+                      <th></th>
+                      <th>DPS</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        1398/12/29
+                      </td>
+                      <td>آخرین مجمع</td>
+                    </tr>
+                    <tr>
+                      <td><span>{{stock.pe}}</span> :مجمع P/E</td>
+                      <td><span>941</span> :سود واقعی</td>
+                    </tr >
+                    <tr>
+                      <td><span>31/88%</span> :درصد توزیع</td>
+                      <td><span>300</span> :سود نقدی</td>
+                    </tr>
+                  </table>
+            </div>
+            <div>
+                <table class="tab">
+                    <tr>
+                      <th></th>
+                      <th>EPS</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        1398/12/29
+                      </td>
+                      <td>سال مالی</td>
+                    </tr>
+                    <tr>
+                      <td>:دوره<span> یکساله</span></td>
+                      <td><span>{{stock.eps}}</span> :تحقق سود </td>
+                    </tr>
+                    <tr class="last-tr">
+                      <td><span>{{stock.pe}}</span> :P/E TTM</td>
+                      <td><span>{{stock.eps}}</span> :TTM سود</td>
+                    </tr>
+                  </table>
+            </div>
+        </section>
+        <section id="ratio">
+                
+        </section>
+        <section id="expand">
+            expand
+        </section>
+        <section id="raise">
+            raise
+        </section>
+        <section id="conferance">
+            conferance
+        </section>
+        
+
+      {% include "footer.html" %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{% static './js/navigation.js' %}"></script>
+    <script type="text/javascript" src="{% static './js/stok.js' %}"></script>
+  </body>
+
+</html>

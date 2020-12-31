@@ -1,0 +1,36 @@
+
+    <nav class="grid">
+        <div class="brand">portfogram</div>
+        <div class="search-bar">
+            <div class="search-wrapper">
+                <input class="search" type="text" name="search" autocomplete="off" placeholder="&#xf002">
+                <div class="search-result filter">
+                    <div class="search-result-header">
+                        <div>نماد</div>
+                        <div>نام</div>
+                        <div>بازار</div>
+                    </div>
+                    {% for s in stocks %}
+                    <div class="search-item">
+                        <a href='stocks/?stocks={{s.name}}'>
+                            <div>{{s.name}}</div>
+                            <div>{{s.full_name}}</div>
+                            <div>{{s.market}}</div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="links">
+            <div><a href="#">آموزش</a></div>
+            <div><a href="#">الگو تریدینگ</a></div>
+            <div><a href="#">پورتفوگرام</a></div>
+            <div><a href="#">نقشه بازار</a></div>
+        </div>
+        <div class="mobile-util-wrapper">
+            <div class="mobile-search-icon util"><i class="fa fa-search" aria-hidden="true"></i></div>
+            <div class="mobile-navi-icon util"><i class="fa fa-bars" aria-hidden="true"></i></div>
+            <div class="mobile-close util"><i class="fa fa-times" aria-hidden="true"></i></div>
+        </div>
+    </nav>

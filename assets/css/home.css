@@ -1,0 +1,325 @@
+/* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
+@import url(fontiran.css); 
+/* @font-face{
+    font-family: "fontawesome-webfont";
+    src: url("../fonts/")
+} */
+
+/* restart */
+body {
+	font-family: IRANSans !important;
+	font-weight: 300;
+}
+
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    text-align: right;
+}
+
+/* variables */
+:root{
+    --gray : #b3b3b3;
+    --black : #0b0616;
+    --white : #f2f2f2;
+    --pink : #8c16d8;
+    --purple : #f62293;
+    --dark : #4a00ff;
+    --light : #0074ff;
+}
+/* mobile and smile diveces */
+#slogen{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin:0;
+    padding:0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+    position: relative;
+}
+#slogen::after{
+    content: "";
+    background-image:url(../images/1_Ue3KxiZlTeJ4tycGwnLx1g.jpeg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    position:absolute;
+    top:0;
+    right:0;
+    left: 0;
+    bottom: 0;
+    opacity: 0.6;
+}
+
+.side-text{
+    color: var(--black);
+    z-index: 5;
+}
+.side-text h1{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin:0;
+    text-align:center;
+}
+.side-text h2{
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin:0.5rem 0 0 0;
+    text-align:center;
+}
+#start{
+    margin:1rem 0;
+    text-align:center;
+}
+#start a{
+    display: block;
+    text-align:center;
+    width: 50%;
+    margin:0 auto;
+    border: 1px solid var(--black);
+    border-radius: 30px;
+    background-color: var(--gray);
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+    padding:0.2rem 0;
+}
+/* tablet and landscape devices */
+@media screen and (min-width:450px){
+    #slogen{
+        height: 50vh !important;
+    }
+    .side-text h1{
+        font-size: 1.8rem !important;
+    }
+    .side-text h2{
+        font-size: 1.1rem !important ;
+    }
+}
+/* tablet and desktop */
+@media screen and (min-width:600px){
+    #slogen{
+        height: 60vh !important;
+    }
+    .side-text h1{
+        font-size: 1.8rem !important;
+    }
+    .side-text h2{
+        font-size: 1.1rem !important ;
+    }
+}
+
+/* desktop and bigger */
+@media screen and (min-width:750px){
+    #slogen{
+        height: 80vh !important;
+    }
+    .side-text h1{
+        font-size: 1.8rem !important;
+    }
+    .side-text h2{
+        font-size: 1.1rem !important ;
+    }
+}
+/* large screen */
+@media screen and (min-width:950px){
+    #slogen{
+        height: 100vh !important;
+    }
+    .side-text h1{
+        font-size: 2.2rem !important;
+    }
+    .side-text h2{
+        font-size: 1.4rem !important ;
+    }
+    .side-text{
+        margin-bottom: 7%;
+       }
+}
+
+/* very large screen */
+@media screen and (min-width:1150px){
+    #slogen{
+        height: 100vh !important;
+    }
+    .side-text h1{
+        font-size: 2.2rem !important;
+    }
+    .side-text h2{
+        font-size: 1.4rem !important ;
+    }
+    .side-text{
+     margin-bottom: 7%;
+    }
+}
+
+/* slogen welcome section end here */
+
+/* mobile version */
+#our-mission{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+#our-mission > div{
+    width: 100%;
+    text-align: center;
+    height: 32%;
+}
+
+.logo{
+    padding-top:1.5rem;
+    font-size: 3rem;
+}
+.mission-text p{
+    text-align: center;
+    margin:0;
+    padding:0.7rem 1rem 0 1rem;
+    font-size:1rem;
+}
+.more-info{
+    text-align-last: center;
+}
+.more-info i{
+    padding:0.5rem;
+    color:#919190;
+    font-size: 1rem;
+}
+.more-info a{
+    text-decoration: none;
+    color: black;
+}
+
+/* labtop desktop and tablet */
+@media screen and (min-width:620px){
+    #our-mission{
+        flex-direction:row !important;
+        height: 50vh !important;
+    }
+    #our-mission > div{
+        display: flex !important;
+        flex-direction: column !important;
+        width: 50% !important;
+        height: 50% !important;
+        align-items: center !important;
+        padding:0 30px;
+    }
+    .mission-text p{
+        text-align: center;
+        margin:0;
+        padding:0.7rem 1.2rem 0 1.2rem;
+        font-size:1rem;
+        vertical-align: center;
+    }
+}
+
+
+@media screen and (min-width:1200px){
+    #our-mission{
+        flex-direction:row !important;
+        height: 50vh !important;
+        overflow: hidden;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+       
+    }
+    #our-mission > div{
+        display: flex !important;
+        flex-direction: column !important;
+        width: 33% !important;
+        height: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .mission-text p{
+        text-align: center;
+        margin:0;
+        padding:0.7rem 1rem 0 1rem;
+        font-size:1rem;
+        vertical-align: center;
+    }
+}
+
+/* our-mission section end here */
+#learning{
+    margin:20px 0;
+    width: 100%;
+    height: 45vh;
+}
+.banner{
+    margin:0 auto;
+    border-radius: 16px;
+    background-color: black;
+    color:white;
+    position: relative;
+    width: 80%;
+    height: 100%;
+}
+
+.edu-head{
+    display: flex;
+    flex-flow: wrap row;
+    align-items: center;
+    justify-content: center;
+    margin:0;
+    height: 30%;
+    padding: 16px 0 0 0;
+}
+.edu-head div{
+    width: auto;
+   text-align:center;
+   padding : 10px;
+}
+.edu-head h2{
+    font-size: 1rem;
+}
+.education{
+   font-size: 3rem;
+}
+.edu-text{
+    padding:12px 0 16px 0;
+}
+.edu-text p {
+    padding:0 16px;
+    margin-bottom: 16px;
+   text-align:center;
+}
+.lead{
+    color: white;
+    margin:18px auto;
+    width: 30%;
+    text-align: center;
+    padding:6px;
+    border:1px solid white;
+    border-radius: 24px;
+    font-size: 1rem;
+}
+@media screen and (min-width:920px){
+    .edu-head{
+        height: 30%;
+        padding: 16px 0 0 0;
+    }
+    .edu-head div{
+        width: 40%;
+       text-align:center;
+       padding : 10px;
+    }
+    .edu-head h2{
+        font-size: 1.5rem;
+    }
+    .education{
+        font-size: 4rem;
+     }
+     .edu-text{
+        padding:20px 0 16px 0;
+    }
+}

@@ -1,0 +1,86 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+    <script src='https://kit.fontawesome.com/6fac18e54c.js' crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static './css/headfoot.css'%}"/>
+    <link rel="stylesheet" href="{% static './css/home.css'%}"/>
+   
+    
+
+    <title>it will be awsome!</title>
+  </head>
+  <body>
+          {% include 'navbar.html' %}
+         <!--slogen section start here-->
+         <!-- {% block content %} -->
+        <section id="slogen">
+          <div class="image-slogen"></div>
+          <div class="side-text">
+            <h1>مثل یک حرفه‌ای ترید کن</h1>
+            <h2>پورتفوگرام شما رو به بهترین‌های بازار سرمایه وصل میکنه</h2>
+            <div id="start"><a  href="#">شروع کن</a></div>
+          </div>
+        </section>
+        <!--slogen section end here-->
+
+        <!-- our-mission section start here!-->
+        <section id="our-mission">
+          <div>
+            <i class="logo fa fa-bar-chart" aria-hidden="true"></i>
+            <div class="mission-text">
+              <p>تمامی اطلاعات در یکجا: نمودار قیمتی اطلاعیه‌های کدال و هر اطلاعاتی دیگری که از نماد بخواهید در یکجا برای شما گردآوری شده</p>
+              <div class="more-info"><a href="#"><span><i class="my-info fa fa-info-circle info" aria-hidden="true"></i>مشاهده نمودارها</span></a></div>
+            </div>
+          </div>
+          <div>
+            <i class="logo fa fa-users" aria-hidden="true"></i>
+            <div class="mission-text">
+              <p>مثل یک حرفه‌ای ترید کن: تحلیل هات رو به اشتراک بزار، تحلیل ‌افراد حرفه‌ای رو ببین و سبد سهامت رو به اکانت بهترین ‌های بازار وصل کن</p>
+              <div class="more-info"><a href="#"><span><i class="my-info fa fa-info-circle info" aria-hidden="true"></i>اطلاعات بیشتر</span></a></div>
+            </div>
+          </div>
+          <div>
+            <i class="logo fa fa-rocket" aria-hidden="true"></i>
+            <div class="mission-text">
+              <p>سودت رو چند برابر کن: با استفاده از ربات پورتفوگرام هیچ موقعیتی رو برای سود کردن از دست نده</p>
+              <div class="more-info"><a href="#"><span><i class="my-info fa fa-info-circle info" aria-hidden="true"></i>اطلاعات بیشتر</span></a></div>
+            </div>
+          </div>
+        </section>
+        <!-- our-mission section ends here!-->
+        <!-- learning banner section start here!-->
+        <section id="learning">
+          <div class="banner">
+            <div class="edu-head">
+              <div>
+                <i class="education fa fa-graduation-cap" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h2>آموزش صفر تا صد بورس</h2>
+              </div>
+            </div>
+            <div class="edu-text">
+              <p>همگام با رشد درآمدت، دانش خودت رو هم از بورس بیشتر کن تا به قله‌های  دماوند برسی که البته دیگه نمیتونی بری اونجا صاحب داره</p>
+              <div class="lead"><a><span>شروع کن</span></a></div>
+            </div>
+          </div>
+        </section>
+        <!-- {% endblock %} -->
+        {% include "footer.html" %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="{% static './js/navigation.js' %}"></script>
+  </body>
+
+</html>
