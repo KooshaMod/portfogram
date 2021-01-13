@@ -6,9 +6,9 @@ from home.views import get_list_stocks
 # from json import dumps
 from django.http import JsonResponse
 
-import json
-import jsonpickle
-from json import JSONEncoder
+# import json
+# import jsonpickle
+# from json import JSONEncoder
 
 
 

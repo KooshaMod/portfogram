@@ -18,6 +18,8 @@ def to_int(s):
         return s
     elif isinstance(s, str):
         return round(to_float(s))
+    elif s == None:
+        return 0
     msg = "{} has type {} which is not a supported format."
     raise ValueError(msg.format(s, type(s)))
 
@@ -63,16 +65,15 @@ class SourceArena:
         params = {'token':self.token, 'all':'all', 'type': type}
         response = requests.get(self.base_url, params=params)
         return response.json()
-def shares_saver(api,api_result):
-    # api_result = JSON result from api for all market
-    # pass api so we could call the api with get_share method to save market and industry in db
+
+
+def shares_saver(api):
     
-    # TODO: We are calling the api with get_all_now method and in that we dont get market type (bourse,farabourse) and state of shares but if we call with get_share
-    # we would get that data and save it, we should everytime we want to save a share call api with get_share method and save those info 
-    # -------------------- Completed ------------------------
-    # posibile problem: maybe we reach our api limits 
-    
-    for x in api_result:
+    res = api.get_all_now(0)
+    count = 0
+    for x in res:
+        print(count)
+        count += 1
         s = DataShare()
         s.name = x['name']
         s.full_name = x['full_name']
@@ -95,18 +96,54 @@ def shares_saver(api,api_result):
         s.trade_value = to_int(x['trade_value'])
         s.market_value = to_int(x['market_value'])
         s.date = timezone.now()
-        # calling api is limitted for now i just commented this. when we improve our api we should uncomment the code below        
-        # res = api.get_share(s.name)
-        # s.market = res['market']
-        # s.industry = res['type']
-        # s.state = res['state']
+        s.market = x['market']
+        s.state = x['state']
+        s.daily_price_high = to_int(x['daily_price_high'])
+        s.daily_price_low = to_int(x['daily_price_low'])
+        s.trade_num = to_int(x['trade_number'])
+        s.all_stocks = to_int(x['all_stocks'])
+        s.basic_vol = to_int(x['basis_volume'])
+        s.read_buy_vol = to_int(x['real_buy_volume'])
+        s.co_buy_vol = to_int(x['co_buy_volume'])
+        s.read_sell_vol = to_int(x['real_sell_volume'])
+        s.co_sell_vol = to_int(x['co_sell_volume'])
+        s.real_buy_count = to_int(x['real_buy_count'])
+        s.co_buy_count = to_int(x['co_buy_count'])
+        s.real_sell_count = to_int(x['real_sell_count'])
+        s.co_sell_count = to_int(x['co_sell_count'])
+
+        s.first_row_sell_count = to_int(x['1_sell_count'])
+        s.sec_row_sell_count = to_int(x['2_sell_count'])
+        s.third_row_sell_count = to_int(x['3_sell_count'])
+        s.first_row_buy_count = to_int(x['1_buy_count'])
+        s.sec_row_buy_count = to_int(x['2_buy_count'])
+        s.third_row_buy_count = to_int(x['3_buy_count'])
+        s.first_row_sell_price = to_int(x['1_sell_price'])
+        s.sec_row_sell_price = to_int(x['2_sell_price'])
+        s.third_row_sell_price = to_int(x['3_sell_price'])
+        s.first_row_buy_price = to_int(x['1_buy_price'])
+        s.sec_row_buy_price = to_int(x['2_buy_price'])
+        s.third_row_buy_price = to_int(x['3_buy_price'])
+        s.first_row_sell_vol = to_int(x['1_sell_volume'])
+        s.sec_row_sell_vol = to_int(x['2_sell_volume'])
+        s.third_row_sell_vol = to_int(x['3_sell_volume'])
+        s.first_row_buy_vol = to_int(x['1_buy_volume'])
+        s.sec_row_buy_vol = to_int(x['2_buy_volume'])
+        s.third_row_buy_vol = to_int(x['3_buy_volume'])
+        # some data from another method of api       
+        res = api.get_share(s.name)
+        s.industry = res['type']
+        s.sub_industry = res['sub_type']
         s.save()
 
 
 def saver(request):
     token = '8e58c3d3ab6d07b04d21ae2f7b9b1252'
     api = SourceArena(token)
-    res = api.get_all_now(0)
-    shares_saver(api,res)
-    html = "<html><body>Data saved to db</body></html>"
+    shares_saver(api)
+    # res = api.get_all_now(0)
+    # html = f"<html><body>{res}</body></html>"
+    # DataShare.objects.all().delete()
+    html = "<html><body >saved to db</body></html>"
+
     return HttpResponse(html)

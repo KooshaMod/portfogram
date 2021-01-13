@@ -45,11 +45,46 @@ class DataShare(models.Model):
     trade_value = models.BigIntegerField()
     market_value = models.BigIntegerField()
     date = models.DateTimeField()
-    #new data from api need to remigrate model
+    # -------- new data from api need to remigrate model ------
     industry = models.TextField()
+    sub_industry = models.TextField(default="")
     market = models.TextField()
     state = models.TextField()
-
-
+    #gheymate mojaz
+    daily_price_high = models.IntegerField(default=0)
+    daily_price_low = models.IntegerField(default=0)
+    trade_num = models.BigIntegerField(default=0)
+    #tedade barge saham
+    all_stocks = models.BigIntegerField(default=0)
+    # hajme mabna
+    basic_vol = models.BigIntegerField(default=0)
+    #real person - companies
+    read_buy_vol = models.BigIntegerField(default=0)
+    co_buy_vol = models.BigIntegerField(default=0)
+    read_sell_vol = models.BigIntegerField(default=0)
+    co_sell_vol = models.BigIntegerField(default=0)
+    real_buy_count = models.IntegerField(default=0)
+    co_buy_count = models.IntegerField(default=0)
+    real_sell_count = models.IntegerField(default=0)
+    co_sell_count = models.IntegerField(default=0)
+    # orders' table
+    first_row_sell_count = models.IntegerField(default=0)
+    sec_row_sell_count = models.IntegerField(default=0)
+    third_row_sell_count = models.IntegerField(default=0)
+    first_row_buy_count = models.IntegerField(default=0)
+    sec_row_buy_count = models.IntegerField(default=0)
+    third_row_buy_count = models.IntegerField(default=0)
+    first_row_sell_price = models.IntegerField(default=0)
+    sec_row_sell_price = models.IntegerField(default=0)
+    third_row_sell_price = models.IntegerField(default=0)
+    first_row_buy_price = models.IntegerField(default=0)
+    sec_row_buy_price = models.IntegerField(default=0)
+    third_row_buy_price = models.IntegerField(default=0)
+    first_row_sell_vol = models.BigIntegerField(default=0)
+    sec_row_sell_vol = models.BigIntegerField(default=0)
+    third_row_sell_vol = models.BigIntegerField(default=0)
+    first_row_buy_vol = models.BigIntegerField(default=0)
+    sec_row_buy_vol = models.BigIntegerField(default=0)
+    third_row_buy_vol = models.BigIntegerField(default=0)
 
 
