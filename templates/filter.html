@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>filter</title>
+</head>
+<body style="background-color:lightgreen;">
+	<form method='GET' style="width: 500px; margin:auto">
+		<input style="width: 100%; height:30px" type="text" name="entered_filter" placeholder="filter"><br>
+		<input type="submit" name="submit">
+	</form>
+	{% for i in res %}
+	<div style="width: 500px; margin:auto;">{{i}}</div>
+	<br>
+	{% endfor %}
+</body>
+</html>

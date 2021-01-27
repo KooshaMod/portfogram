@@ -57,7 +57,7 @@ class DataShare(models.Model):
     #tedade barge saham
     all_stocks = models.BigIntegerField(default=0)
     # hajme mabna
-    basic_vol = models.BigIntegerField(default=0)
+    basis_vol = models.BigIntegerField(default=0)
     #real person - companies
     read_buy_vol = models.BigIntegerField(default=0)
     co_buy_vol = models.BigIntegerField(default=0)

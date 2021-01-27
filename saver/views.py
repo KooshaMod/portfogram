@@ -72,8 +72,7 @@ def shares_saver(api):
     res = api.get_all_now(0)
     count = 0
     for x in res:
-        print(count)
-        count += 1
+
         s = DataShare()
         s.name = x['name']
         s.full_name = x['full_name']
@@ -130,20 +129,32 @@ def shares_saver(api):
         s.first_row_buy_vol = to_int(x['1_buy_volume'])
         s.sec_row_buy_vol = to_int(x['2_buy_volume'])
         s.third_row_buy_vol = to_int(x['3_buy_volume'])
-        # some data from another method of api       
-        res = api.get_share(s.name)
-        s.industry = res['type']
-        s.sub_industry = res['sub_type']
-        s.save()
+        # some data from another method of api            
+        # res = api.get_share(s.name)
+        # s.industry = res['type']
+        # s.sub_industry = res['sub_type']
 
+        #instead of getting industry and sub_industry from api read it from db to accelerate
+        print(s.name)
+        pre_rows = list(DataShare.objects.filter(name=s.name))
+        for i in pre_rows:
+            if i.industry:
+                s.industry = i.industry
+            if i.sub_industry:
+                s.sub_industry = i.sub_industry
+        s.save()
+# 
 
 def saver(request):
     token = '8e58c3d3ab6d07b04d21ae2f7b9b1252'
     api = SourceArena(token)
     shares_saver(api)
     # res = api.get_all_now(0)
+    # res = DataShare.objects.filter(name='دروز').last()
     # html = f"<html><body>{res}</body></html>"
     # DataShare.objects.all().delete()
+    # res = list(DataShare.objects.filter(name='وگردش'))
+    # print(res)
     html = "<html><body >saved to db</body></html>"
 
     return HttpResponse(html)
