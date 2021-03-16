@@ -62,6 +62,42 @@ def trade_volume(share,days=1):
 def market_size(share):
 	return int(DataShare.objects.filter(name=share).last().market_value)
 
+def fix_trade_vol(s):
+	s = ''.join(s.split(' '))
+	new_str = ""
+	while True:
+		x = s.find("trade_volume")
+		if x == -1:
+			new_str += s
+			break
+		new_str += s[:x+12]
+		s = s[x+12:]
+		sym = s[0:1]
+		if sym != "(":
+			new_str += "(x.name)"
+		else:
+			new_str += "(x.name,"
+			s = s[1:]
+	return new_str		
+
+def fix_trade_values(s):
+	s = ''.join(s.split(' '))
+	new_str = ""
+
+	while True:
+		x = s.find("trade_value")
+		if x == -1:
+			new_str += s
+			break
+		new_str += s[:x+11]
+		s = s[x+11:]
+		sym = s[0:1]
+		if sym != "(":
+			new_str += "(x.name)"
+		else:
+			new_str += "(x.name,"
+			s = s[1:]
+	return new_str		
 
 def add_param(s):
 	'''
@@ -84,24 +120,13 @@ def add_param(s):
 	s = s.replace('close_price','close_price(x.name)')
 	s = s.replace('final_price','final_price(x.name)')
 	#trade value
-	if s[s.find('trade_value')+len('trade_value')] == '(':
-		d = s[s.find('trade_value')+len('trade_value') + 1]
-		tv = 'trade_value(' + d + ')'
-		rep = 'trade_value(x.name,' + d + ')'
-		s = s.replace(tv,rep)
-	else:
-		s = s.replace('trade_value', "trade_value(x.name)")
-
+	s = fix_trade_values(s)
 	#trade volume
-	if s[s.find('trade_volume')+len('trade_volume')] == '(':
-		d = s[s.find('trade_volume')+len('trade_volume') + 1]
-		tv = 'trade_volume(' + d + ')'
-		rep = 'trade_volume(x.name,' + d + ')'
-		s = s.replace(tv,rep)
-	else:
-		s = s.replace('trade_volume', "trade_volume(x.name)")
-
-
+	s = fix_trade_vol(s)
+	s = s.replace('and',' and ')
+	s = s.replace('or', ' or ')
+	s = s.replace('&', ' and ')
+	s = s.replace('|', ' or ')
 	#add '' to fixed input	
 	s = s.replace('بورس', '"بورس"')
 	s = s.replace('فرابورس','"فرابورس"')
