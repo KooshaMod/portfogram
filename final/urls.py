@@ -21,5 +21,6 @@ urlpatterns = [
     path('stocks/', include('stocks.urls')),
     path('saver/', include('saver.urls')),
     path('',include('home.urls')),
-    path('filter/', include('filter.urls'))
+    path('filter/', include('filter.urls')),
+    path('agent/',include('agent.urls'))
 ]
