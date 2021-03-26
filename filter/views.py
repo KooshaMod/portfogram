@@ -237,12 +237,9 @@ def filter(request):
 		print(f'string after parsing is \n {res}')
 		shares = market_data()
 		for x in shares:
-			if x.name == 'وسپهر':
-				print(industry(x.name))
 			if eval(res):
 				result.append(x.name)
 	a = DataShare.objects.filter(name='هجرت').last()
-	print(f"هجرت final = {a.final_price} and close = {a.close_price}")	
 	return render(request,'filter.html',{'res':result})
 
 

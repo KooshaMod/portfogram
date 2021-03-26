@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponse
 from stocks.models import DataShare
 from django.utils import timezone
 from saver.models import SourceArena
-import requests
 # Create your views here.
 
 def to_float(s):
@@ -89,20 +88,29 @@ def shares_saver(api):
         s.first_row_buy_vol = to_int(x['1_buy_volume'])
         s.sec_row_buy_vol = to_int(x['2_buy_volume'])
         s.third_row_buy_vol = to_int(x['3_buy_volume'])
-        # some data from another method of api            
-        # res = api.get_share(s.name)
-        # s.industry = res['type']
-        # s.sub_industry = res['sub_type']
+
 
         #instead of getting industry and sub_industry from api read it from db to accelerate
         print(s.name)
         pre_rows = list(DataShare.objects.filter(name=s.name))
+        have_pre_ind = False
+        have_pre_sub_ind = False
         for i in pre_rows:
             if i.industry:
                 s.industry = i.industry
+                have_pre_ind = True
             if i.sub_industry:
                 s.sub_industry = i.sub_industry
-        s.save()
+                have_pre_sub_ind = True
+                
+        if have_pre_sub_ind and have_pre_ind:
+            s.save()
+        else:
+            # some data from another method of api            
+            res = api.get_share(s.name)
+            s.industry = res['type']
+            s.sub_industry = res['sub_type']
+            s.save()
 # 
 
 def saver(request):
