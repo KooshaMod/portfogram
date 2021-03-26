@@ -63,8 +63,15 @@ def market_size(share):
 	return int(DataShare.objects.filter(name=share).last().market_value)
 
 def fix_trade_vol(s):
-	s = ''.join(s.split(' '))
+	
+	while True:
+		init_str = s
+		s = s.replace("trade_value ", "trade_value")
+		s = s.replace("trade_value	", "trade_value")
+		if init_str == s: break
+
 	new_str = ""
+
 	while True:
 		x = s.find("trade_volume")
 		if x == -1:
@@ -81,7 +88,12 @@ def fix_trade_vol(s):
 	return new_str		
 
 def fix_trade_values(s):
-	s = ''.join(s.split(' '))
+
+	while True:
+		init_str = s
+		s = s.replace("trade_value ", "trade_value")
+		s = s.replace("trade_value	", "trade_value")
+		if init_str == s: break
 	new_str = ""
 
 	while True:
@@ -225,6 +237,8 @@ def filter(request):
 		print(f'string after parsing is \n {res}')
 		shares = market_data()
 		for x in shares:
+			if x.name == 'وسپهر':
+				print(industry(x.name))
 			if eval(res):
 				result.append(x.name)
 	a = DataShare.objects.filter(name='هجرت').last()
