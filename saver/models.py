@@ -23,15 +23,24 @@ class SourceArena:
         market2 = self.get_market(market, time_b)
         index2 = to_int(market2['bourse']['index'])
         return index2/index1
+
+
     # TODO: Check if we can have 2 method with same name with different parameters (polymorphism) in python
     def get_share_by_time(self,name,time):
         params = {'token':self.token, 'name':name,'time':time}
         response = requests.get(self.base_url, params=params)
         return response.json()
+
+
     def get_share(self,name):
         params = {'token':self.token, 'name':name}
         response = requests.get(self.base_url, params=params)
         return response.json()
+
+    def get_recent_days(self,name,days):
+    	params = {'token':self.token,'name':name,'days':days}
+    	response = requests.get(self.base_url, params=params)
+    	return response.json()
 
 
     def get_all_now(self,type=2):

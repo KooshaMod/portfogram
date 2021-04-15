@@ -152,6 +152,7 @@ def add_param(s):
 			industries.append(share.industry)
 		if share.sub_industry not in sub_industries:
 			sub_industries.append(share.sub_industry)
+	#TODO : Solving putting '' in this way causing problem between استخراج سایر فلزات اساسی and فلزات اساسی.
 	for sub_i in sub_industries:
 		replacement = '"'+sub_i+'"'
 		if s.find(sub_i) != -1 and sub_i:

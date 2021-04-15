@@ -4,13 +4,22 @@
 	<title>Agent</title>
 </head>
 <body style="background-color:lightblue;">
-	<form method='GET' style="width: 500px; margin:auto">
-		<input style="width: 100%; height:30px" type="text" name="share_name" placeholder="enter share name"><br>
+	<form style="width: 50%;text-align: center;" method='GET'>
+		<input style="width: 100%" type="text" name="share_name" placeholder="enter the share name to compare with shares in the same industry"><br>
+		<input style="width: 100%" type="text" name='accepted_cor' placeholder="Enter accepted corrolation to show (For Example 0.9)"><br>
+		<input style="width: 100%" type="text" name="difference" placeholder="Enter accepted difference with high corrolation stocks to show"><br>
+		<select style="width: 50%" name='days' size=6>
+			<option value=12>2 weeks</option>
+			<option value=22>1 month</option>
+			<option value=66>3 months</option>
+			<option value=132>6 months</option>
+			<option value=264>1 year</option>			
+		</select><br>
 		<input type="submit" name="submit">
 	</form>
-	{% for i in res %}
-	<div style="width: 500px; margin:auto;">{{i}}</div>
-	<br>
-	{% endfor %}	
+
+ 	<div>{{res}}</div>
+
+	
 </body>
 </html>
