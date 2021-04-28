@@ -114,7 +114,9 @@ def shares_saver(api):
 # 
 
 def saver(request):
-    token = '8e58c3d3ab6d07b04d21ae2f7b9b1252'
+    file = open('../token.txt','r')
+    token = file.read()
+    file.close()
     api = SourceArena(token)
     shares_saver(api)
     # res = api.get_all_now(0)

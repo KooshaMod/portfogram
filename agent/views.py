@@ -61,7 +61,10 @@ def agent_ren(request):
 	CONFIG['accepted_cor'] = to_float(request.GET.get('accepted_cor',''))
 	CONFIG['accepted_diff'] = to_float(request.GET.get('difference',''))
 	print(CONFIG)
-	api = SourceArena('8e58c3d3ab6d07b04d21ae2f7b9b1252')
+	file = open('../token.txt','r')
+	token = file.read()
+	file.close()
+	api = SourceArena(token)
 	if CONFIG['share_name'] and CONFIG['days']:
 		share_industry = DataShare.objects.filter(name=CONFIG['share_name']).last().industry
 		market_shares = market_data()
